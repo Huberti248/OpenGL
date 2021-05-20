@@ -2,7 +2,7 @@ workspace "OpenGL"
 
 architecture "x86"
 location "../"
-staticruntime "on"
+staticruntime "off"
 
 configurations{
 	"Debug",
@@ -22,9 +22,27 @@ project "OpenGL"
 	targetdir "../bin/%{cfg.buildcfg}_%{cfg.platform}"
 	objdir "../bin/obj/%{cfg.buildcfg}_%{cfg.platform}"
 
+	includedirs{
+		"../vendor/GLFW/include",
+		"../vendor/GLEW/include",
+	}
+
+	libdirs{
+		"../vendor/GLFW/lib",
+		"../vendor/GLEW/lib",
+	}
+
+	links{
+		"glfw3.lib",
+		"opengl32.lib",
+		"glew32s.lib",
+	}
+
 	files{
 		"../main.cpp",
 	}
+
+	defines "GLEW_STATIC"
 
 	filter "configurations:Debug"
 		symbols "On"
