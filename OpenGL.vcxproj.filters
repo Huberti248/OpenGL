@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="vendor">
+      <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\IMGUI">
+      <UniqueIdentifier>{BD127BEE-A975-0A93-52FB-42493E3DD615}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\IMGUI\backends">
+      <UniqueIdentifier>{87F17110-F35D-2D0B-BC51-C568287D4F73}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="vendor\IMGUI\backends\imgui_impl_glfw.cpp">
+      <Filter>vendor\IMGUI\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\IMGUI\backends\imgui_impl_opengl3.cpp">
+      <Filter>vendor\IMGUI\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\IMGUI\imgui.cpp">
+      <Filter>vendor\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\IMGUI\imgui_demo.cpp">
+      <Filter>vendor\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\IMGUI\imgui_draw.cpp">
+      <Filter>vendor\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\IMGUI\imgui_tables.cpp">
+      <Filter>vendor\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\IMGUI\imgui_widgets.cpp">
+      <Filter>vendor\IMGUI</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -25,6 +25,8 @@ project "OpenGL"
 	includedirs{
 		"../vendor/GLFW/include",
 		"../vendor/GLEW/include",
+		"../vendor/IMGUI",
+		"../vendor/IMGUI/backends/",
 	}
 
 	libdirs{
@@ -40,6 +42,13 @@ project "OpenGL"
 
 	files{
 		"../main.cpp",
+		"../vendor/IMGUI/imgui.cpp",
+		"../vendor/IMGUI/imgui_demo.cpp",
+		"../vendor/IMGUI/imgui_draw.cpp",
+		"../vendor/IMGUI/imgui_tables.cpp",
+		"../vendor/IMGUI/imgui_widgets.cpp",
+		"../vendor/IMGUI/backends/imgui_impl_glfw.cpp",
+		"../vendor/IMGUI/backends/imgui_impl_opengl3.cpp",
 	}
 
 	defines "GLEW_STATIC"

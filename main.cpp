@@ -11,6 +11,9 @@
 #include <cmath>
 #include <ctime>
 #include <cstdlib>
+#include <imgui.h>
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
@@ -65,12 +68,20 @@ unsigned createProgram(unsigned vertexShaderId, unsigned fragmentShaderId)
 	}
 }
 
+void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
+		glfwSetWindowShouldClose(window, GLFW_TRUE);
+	}
+}
+
 int main()
 {
 	glfwInit();
-	GLFWwindow* window = glfwCreateWindow(640, 480, "OpenGL", 0, 0);
+	GLFWwindow* window = glfwCreateWindow(1920, 1080, "OpenGL", 0, 0);
 	glfwMakeContextCurrent(window);
 	glewInit();
+	glfwSetKeyCallback(window, keyCallback);
 
 	float positions[]{
 		-0.5f, -0.5f,
@@ -112,10 +123,28 @@ void main()
 	unsigned programId = createProgram(vs, fs);
 	glUseProgram(programId);
 
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImGui::StyleColorsDark();
+	ImGui_ImplGlfw_InitForOpenGL(window, true);
+	ImGui_ImplOpenGL3_Init("#version 330 core");
+	bool showDemoWindow = true;
+
 	while (!glfwWindowShouldClose(window)) {
-		glClear(GL_COLOR_BUFFER_BIT);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
-		glfwSwapBuffers(window);
 		glfwPollEvents();
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+		if (showDemoWindow) {
+			ImGui::ShowDemoWindow(&showDemoWindow);
+		}
+		ImGui::Render();
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		glfwSwapBuffers(window);
 	}
 }
