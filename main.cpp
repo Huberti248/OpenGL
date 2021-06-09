@@ -84,15 +84,19 @@ int main()
 	glfwSetKeyCallback(window, keyCallback);
 
 	float positions[]{
-		-0.5f, -0.5f,
-		-0.0f,  0.5f,
-		 0.5f, -0.5f,
+		-0.5f, 0.0f,
+		 0.0f, 0.0f,
+		-0.5f, 0.5f,
+		
+		-0.5f, 0.5f,
+		 0.0f, 0.0f,
+		 0.0f, 0.5f,
 	};
 
 	unsigned vbo;
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), positions, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, 12 * sizeof(float), positions, GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
@@ -142,7 +146,7 @@ void main()
 		ImGui::Render();
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
 
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 		glfwSwapBuffers(window);
